@@ -1,0 +1,28 @@
+version: '3'
+services:
+  jellystat-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: pmifcxwj
+      POSTGRES_PASSWORD: tA_SIk5L0dwdhbpH9qarNd9jHRMF5lmI
+  jellystat:
+    image: jellystat
+    environment:
+      POSTGRES_USER: pmifcxwj
+      POSTGRES_PASSWORD: tA_SIk5L0dwdhbpH9qarNd9jHRMF5lmI
+      POSTGRES_IP: bubble.db.elephantsql.com
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: pmifcxwj
+      JWT_SECRET: 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcwNzQ5OTI0NCwiaWF0IjoxNzA3NDk5MjQ0fQ.eKOgNv6Bn9ARVTBOBZWwOoT-df5Hfq48hRkOi2D9NLg'
+      TZ: Africa/Johannesburg  
+    ports:
+      - "3000:3000"
+    depends_on:
+      - jellystat-db
+networks:
+  default:
+logging:
+      driver: "json-file"
+      options:
+        max-file: "5"   # number of files or file count
+        max-size: "10m" # file size
